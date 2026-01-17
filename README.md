@@ -203,6 +203,3 @@ Contributions are welcome! Feel free to:
 
 ⭐ If you found this project helpful, please give it a star!
 
-## 📞 Support
-
-For questions or issues, please open an issue on GitHub or contact [your-email@example.com]
