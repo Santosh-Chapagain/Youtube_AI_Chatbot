@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube AI Chatbot ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientShift 15s ease infinite;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Animated background circles */
+      body::before,
+      body::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.3;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      body::before {
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.2);
+        top: -100px;
+        left: -100px;
+      }
+
+      body::after {
+        width: 500px;
+        height: 500px;
+        background: rgba(255, 255, 255, 0.15);
+        bottom: -150px;
+        right: -150px;
+        animation-delay: -10s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(50px, -50px) scale(1.1);
+        }
+        66% {
+          transform: translate(-30px, 30px) scale(0.9);
+        }
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 30px;
+        box-shadow:
+          0 8px 32px rgba(0, 0, 0, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        max-width: 950px;
+        width: 100%;
+        padding: 50px;
+        animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes fadeInScale {
+        from {
+          opacity: 0;
+          transform: translateY(-30px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 45px;
+        animation: slideDown 0.8s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header h1 {
+        font-size: 3.5em;
+        font-weight: 800;
+        margin-bottom: 15px;
+        background: linear-gradient(
+          135deg,
+          #fff 0%,
+          rgba(255, 255, 255, 0.8) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -2px;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        animation: glow 3s ease-in-out infinite;
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+        50% {
+          filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+        }
+      }
+
+      .header p {
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 1.2em;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-group {
+        margin-bottom: 28px;
+        animation: fadeInUp 0.8s ease-out backwards;
+      }
+
+      .form-group:nth-child(1) { animation-delay: 0.1s; }
+      .form-group:nth-child(2) { animation-delay: 0.2s; }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      label {
+        display: block;
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 600;
+        margin-bottom: 12px;
+        font-size: 1.1em;
+        letter-spacing: 0.3px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 18px 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        font-size: 1.05em;
+        font-family: inherit;
+        color: #333;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="text"]:focus,
+      textarea:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 1);
+        border-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15),
+                    0 0 0 4px rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      input[type="text"]::placeholder,
+      textarea::placeholder {
+        color: #999;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      .btn {
+        background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.9) 100%);
+        color: #667eea;
+        border: none;
+        padding: 18px 45px;
+        font-size: 1.15em;
+        font-weight: 700;
+        border-radius: 15px;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(102, 126, 234, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .btn:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+
+      .btn:active {
+        transform: translateY(-1px);
+      }
+
+      .btn:disabled {
+        background: rgba(200, 200, 200, 0.5);
+        color: #999;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .btn span {
+        position: relative;
+        z-index: 1;
+      }
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 1.1em;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .loading {
+        display: none;
+        text-align: center;
+        margin-top: 30px;
+        animation: fadeIn 0.4s ease;
+      }
+
+      .loading.show {
+        display: block;
+      }
+
+      .spinner {
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        border-top: 5px solid #fff;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        margin: 0 auto 20px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(180deg) scale(1.1);
+        }
+        100% {
+          transform: rotate(360deg) scale(1);
+        }
+      }
+
+      .loading-text {
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 600;
+        font-size: 1.1em;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .error-container {
+        margin-top: 25px;
+        padding: 20px 25px;
+        background: rgba(255, 107, 107, 0.15);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 107, 107, 0.4);
+        border-radius: 15px;
+        display: none;
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 500;
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+        animation: shake 0.5s ease;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px); }
+        75% { transform: translateX(10px); }
+      }
+
+      .error-container.show {
+        display: block;
+      }
+
+      .example-link {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9em;
+        margin-top: 8px;
+        display: block;
+        font-weight: 400;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        transition: color 0.3s ease;
+      }
+
+      .example-link:hover {
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      /* Video Preview Styles */
+      .video-preview {
+        display: none;
+        margin-top: 30px;
+        padding: 25px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .video-preview.show {
+        display: block;
+      }
+
+      .video-preview-content {
+        display: flex;
+        gap: 25px;
+        align-items: flex-start;
+      }
+
+      .video-thumbnail {
+        width: 220px;
+        height: 165px;
+        border-radius: 15px;
+        object-fit: cover;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .video-thumbnail:hover {
+        transform: scale(1.05);
+      }
+
+      .video-details {
+        flex: 1;
+      }
+
+      .video-title {
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 1.3em;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.4;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .video-id-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        color: rgba(255, 255, 255, 0.95);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Chat Interface Styles */
+      .chat-container {
+        display: none;
+        margin-top: 30px;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .chat-container.show {
+        display: block;
+      }
+
+      .video-info {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        padding: 22px 25px;
+        border-radius: 18px;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .video-info-text {
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 700;
+        font-size: 1.2em;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .new-video-btn {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        color: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        padding: 12px 24px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 0.95em;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .new-video-btn:hover {
+        background: rgba(255, 255, 255, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .chat-history {
+        max-height: 450px;
+        overflow-y: auto;
+        margin-bottom: 25px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .chat-history::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .chat-history::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+
+      .chat-history::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+      }
+
+      .chat-history::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .chat-message {
+        margin-bottom: 25px;
+        animation: messageSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      @keyframes messageSlide {
+        from {
+          opacity: 0;
+          transform: translateY(15px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .chat-question {
+        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+        color: #667eea;
+        padding: 14px 20px;
+        border-radius: 20px 20px 5px 20px;
+        display: inline-block;
+        max-width: 85%;
+        margin-bottom: 12px;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+        padding: 12px 18px;
+        border-radius: 18px 18px 5px 18px;
+        display: inline-block;
+        max-width: 80%;
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+
+      .chat-answer {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        color: rgba(255, 255, 255, 0.95);
+        padding: 16px 22px;
+        border-radius: 20px 20px 20px 5px;
+        display: inline-block;
+        max-width: 88%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        line-height: 1.8;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        font-weight: 500;
+      }
+
+      .chat-input-container {
+        display: flex;
+        gap: 12px;
+        align-items: flex-end;
+      }
+
+      .chat-input-container textarea {
+        flex: 1;
+        min-height: 55px;
+        max-height: 130px;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .send-btn {
+        width: auto;
+        padding: 16px 35px;
+        white-space: nowrap;
+        font-size: 1em;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 15px;
+        }
+
+        .container {
+          padding: 35px 25px;
+          border-radius: 25px;
+        }
+
+        .header h1 {
+          font-size: 2.5em;
+        }
+
+        .header p {
+          font-size: 1em;
+        }
+
+        .video-info {
+          flex-direction: column;
+          gap: 15px;
+          text-align: center;
+        }
+
+        .video-preview-content {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .video-thumbnail {
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+        }
+
+        .chat-input-container {
+          flex-direction: column;
+        }
+
+        .send-btn {
+          width: 100%;
+        }
+
+        .chat-question,
+        .chat-answer {
+          max-width: 95%;
+        }
+      }
+
+      /* Smooth scroll for chat */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom fade in animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>✨ YouTube AI Chatbot</h1>
+        <p>🚀 Unlock insights from any YouTube video with AI</p>
+      </div>
+
+      <!-- Initial Form -->
+      <form id="chatForm">
+        <div class="form-group">
+          <label for="videoUrl">📺 YouTube Video URL</label>
+          <input
+            type="text"
+            id="videoUrl"
+            name="videoUrl"
+            placeholder="Paste your YouTube video link here..."
+            required
+          />
+          <small class="example-link"
+            >💡 Try: https://www.youtube.com/watch?v=dQw4w9WgXcQ</small
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="question">💭 Your Question</label>
+          <textarea
+            id="question"
+            name="question"
+            placeholder="What would you like to know about this video?"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn" id="submitBtn">
+          <span>🤖 Ask AI</span>
+        </button>
+      </form>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p class="loading-text">✨ AI is thinking...</p>
+      </div>
+
+      <div class="error-container" id="errorContainer">
+        <strong>⚠️ Error:</strong> <span id="errorText"></span>
+      </div>
+
+      <!-- Video Preview -->
+      <div class="video-preview" id="videoPreview">
+        <div class="video-preview-content">
+          <img
+            id="videoThumbnail"
+            class="video-thumbnail"
+            alt="Video thumbnail"
+          />
+          <div class="video-details">
+            <div class="video-title" id="videoTitle">YouTube Video</div>
+            <span class="video-id-badge" id="videoIdBadge">🎬 Video ID</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Interface -->
+      <div class="chat-container" id="chatContainer">
+        <div class="video-info">
+          <div class="video-info-text">💬 Continue the conversation</div>
+          <button class="new-video-btn" onclick="resetChat()">New Video</button>
+        </div>
+
+        <div class="chat-history" id="chatHistory"></div>
+
+        <div class="chat-input-container">
+          <textarea
+            id="chatQuestion"
+            placeholder="Ask another question..."
+            rows="2"
+          ></textarea>
+          <button class="btn send-btn" id="sendBtn" onclick="askFollowUp()">
+            <span>🚀 Send</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("chatForm");
+      const loading = document.getElementById("loading");
+      const errorContainer = document.getElementById("errorContainer");
+      const errorText = document.getElementById("errorText");
+      const submitBtn = document.getElementById("submitBtn");
+      const chatContainer = document.getElementById("chatContainer");
+      const chatHistory = document.getElementById("chatHistory");
+      const chatQuestion = document.getElementById("chatQuestion");
+      const sendBtn = document.getElementById("sendBtn");
+      const videoPreview = document.getElementById("videoPreview");
+      const videoThumbnail = document.getElementById("videoThumbnail");
+      const videoTitle = document.getElementById("videoTitle");
+      const videoIdBadge = document.getElementById("videoIdBadge");
+      const videoUrlInput = document.getElementById("videoUrl");
+
+      let currentVideoUrl = "";
+      let currentVideoId = "";
+
+      // Fetch and show video preview when URL is entered
+      videoUrlInput.addEventListener("blur", async () => {
+        const url = videoUrlInput.value.trim();
+        if (!url) {
+          videoPreview.classList.remove("show");
+          return;
+        }
+
+        try {
+          const response = await fetch("/get_video_info", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ video_url: url }),
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            currentVideoId = data.video_id;
+
+            // Set thumbnail
+            videoThumbnail.src = data.thumbnail;
+
+            // Set video ID badge
+            videoIdBadge.textContent = `Video ID: ${data.video_id}`;
+
+            // Try to get title from YouTube (using oEmbed API - no key needed)
+            try {
+              const oembedResponse = await fetch(
+                `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${data.video_id}&format=json`,
+              );
+              if (oembedResponse.ok) {
+                const oembedData = await oembedResponse.json();
+                videoTitle.textContent = oembedData.title;
+              } else {
+                videoTitle.textContent = "YouTube Video";
+              }
+            } catch {
+              videoTitle.textContent = "YouTube Video";
+            }
+
+            videoPreview.classList.add("show");
+          } else {
+            videoPreview.classList.remove("show");
+          }
+        } catch (error) {
+          console.error("Error fetching video info:", error);
+          videoPreview.classList.remove("show");
+        }
+      });
+
+      // Handle initial form submission
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const videoUrl = document.getElementById("videoUrl").value;
+        const question = document.getElementById("question").value;
+
+        errorContainer.classList.remove("show");
+        loading.classList.add("show");
+        submitBtn.disabled = true;
+
+        try {
+          const response = await fetch("/ask", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              video_url: videoUrl,
+              question: question,
+            }),
+          });
+
+          const data = await response.json();
+
+          loading.classList.remove("show");
+          submitBtn.disabled = false;
+
+          if (response.ok) {
+            // Store current video URL
+            currentVideoUrl = videoUrl;
+
+            // Add first message to chat
+            addMessageToChat(question, data.answer);
+
+            // Hide form and show chat interface
+            form.style.display = "none";
+            chatContainer.classList.add("show");
+            chatQuestion.focus();
+          } else {
+            errorText.textContent = data.error || "An error occurred";
+            errorContainer.classList.add("show");
+          }
+        } catch (error) {
+          loading.classList.remove("show");
+          submitBtn.disabled = false;
+          errorText.textContent =
+            "Failed to connect to server: " + error.message;
+          errorContainer.classList.add("show");
+        }
+      });
+
+      // Add message to chat history
+      function addMessageToChat(question, answer) {
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "chat-message";
+
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "chat-question";
+        questionDiv.textContent = question;
+
+        const answerDiv = document.createElement("div");
+        answerDiv.className = "chat-answer";
+        answerDiv.textContent = answer;
+
+        messageDiv.appendChild(questionDiv);
+        messageDiv.appendChild(document.createElement("br"));
+        messageDiv.appendChild(answerDiv);
+
+        chatHistory.appendChild(messageDiv);
+
+        // Scroll to bottom
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      }
+
+      // Handle follow-up questions
+      async function askFollowUp() {
+        const question = chatQuestion.value.trim();
+
+        if (!question) return;
+
+        chatQuestion.disabled = true;
+        sendBtn.disabled = true;
+        errorContainer.classList.remove("show");
+
+        // Show loading in chat
+        const loadingDiv = document.createElement("div");
+        loadingDiv.className = "chat-message";
+        loadingDiv.id = "tempLoading";
+        loadingDiv.innerHTML =
+          '<div class="chat-question">' +
+          question +
+          '</div><br><div class="chat-answer">⏳ Thinking...</div>';
+        chatHistory.appendChild(loadingDiv);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+
+        try {
+          const response = await fetch("/ask", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              video_url: currentVideoUrl,
+              question: question,
+            }),
+          });
+
+          const data = await response.json();
+
+          // Remove loading message
+          const tempLoading = document.getElementById("tempLoading");
+          if (tempLoading) tempLoading.remove();
+
+          if (response.ok) {
+            addMessageToChat(question, data.answer);
+            chatQuestion.value = "";
+          } else {
+            errorText.textContent = data.error || "An error occurred";
+            errorContainer.classList.add("show");
+          }
+        } catch (error) {
+          const tempLoading = document.getElementById("tempLoading");
+          if (tempLoading) tempLoading.remove();
+
+          errorText.textContent =
+            "Failed to connect to server: " + error.message;
+          errorContainer.classList.add("show");
+        } finally {
+          chatQuestion.disabled = false;
+          sendBtn.disabled = false;
+          chatQuestion.focus();
+        }
+      }
+
+      // Allow Enter key to send (Shift+Enter for new line)
+      chatQuestion.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          askFollowUp();
+        }
+      });
+
+      // Reset chat to start over
+      function resetChat() {
+        form.style.display = "block";
+        chatContainer.classList.remove("show");
+        videoPreview.classList.remove("show");
+        chatHistory.innerHTML = "";
+        document.getElementById("videoUrl").value = "";
+        document.getElementById("question").value = "";
+        currentVideoUrl = "";
+        currentVideoId = "";
+        errorContainer.classList.remove("show");
+      }
+    </script>
+  </body>
+</html>

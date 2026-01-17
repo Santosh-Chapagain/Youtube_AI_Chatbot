@@ -1,0 +1,39 @@
+# LangChain Core
+langchain
+langchain-core
+
+# OpenAI Integration
+langchain-openai
+openai
+
+# Anthropic Integration
+langchain-anthropic
+
+# Google Gemini (PaLM) Integration
+langchain-google-genai
+google-generativeai
+
+# Hugging Face Integration
+langchain-huggingface
+transformers
+huggingface-hub
+sentencepiece
+protobuf
+
+# Environment Variable Management
+python-dotenv
+
+# YouTube Transcript
+youtube-transcript-api
+
+# Language Detection (Free & Open-Source)
+langdetect
+
+# Vector Store & Text Processing
+faiss-cpu
+langchain-text-splitters
+langchain-community
+sentence-transformers
+torch
+flask
+langchain-ollama
